@@ -23,15 +23,15 @@ use the api:
 
     curl -X POST -H "Content-Type: application/json" http://localhost:8080/register -d 
        '{ 
-           "mail": "test@test.de", 
-           "password": "x", 
-           "lastName": "x", 
-           "name": "y", 
-           "firstName": "x", 
-           "address": "x"
+           "mail": "uzumaki_naruto@konohagakure.co.jp",
+           "password": "rasengan",
+           "lastName": "naruto",
+           "name": "Uzumaki Naruto",
+           "firstName": "uzumaki",
+           "address": "Konohagakure"
         }'
         
-    curl -vu aClient:aSecret -X POST 'http://localhost:8080/oauth/token?username=test@test.de&password=x&grant_type=password'
+    curl -vu aClient:aSecret -X POST 'http://localhost:8080/oauth/token?username=uzumaki_naruto@konohagakure.co.jp&password=x&grant_type=password'
     
 this should return something like
 
