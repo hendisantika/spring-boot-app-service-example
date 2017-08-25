@@ -1,6 +1,6 @@
 # spring-boot-app-service-example
 
-![travis status](https://travis-ci.org/michaelgruczel/spring-boot-app-service-example.svg?branch=master)
+![travis status](https://travis-ci.org/hendisantika/spring-boot-app-service-example.svg?branch=master)
 
 Source code reference for Java Magazine Article (coming soon)
 
@@ -16,7 +16,7 @@ important commands
 
     $ ./gradlew bootRun
     $ ./gradlew buildDocker
-    $ docker run -p 8080:8080 -t michael/spring-boot-app-service-example
+    $ docker run -p 8080:8080 -t hendisantika/spring-boot-app-service-example
     
 use the api:
 
