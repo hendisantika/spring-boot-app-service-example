@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.15.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.16.RELEASE")
         classpath 'se.transmode.gradle:gradle-docker:1.2'
     }
 }
@@ -22,9 +22,6 @@ jar {
 
 repositories {
     mavenCentral()
-    maven {
-        url 'https://repo.spring.io/libs-milestone'
-    }
 }
 
 sourceCompatibility = 1.8
