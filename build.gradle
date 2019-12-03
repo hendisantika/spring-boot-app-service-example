@@ -1,64 +1,50 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.22.RELEASE")
-        classpath 'se.transmode.gradle:gradle-docker:1.2'
-    }
+plugins {
+    id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'docker'
-
-group = 'michael'
-
-jar {
-    baseName = 'spring-boot-app-service-example'
-}
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile("junit:junit")
-
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     /**
      * Oauth2 / jwt requirements
      */
-    compile("org.springframework.boot:spring-boot-starter-security")
-    compile("org.springframework.security.oauth:spring-security-oauth2:2.0.8.RELEASE")
-    compile("org.springframework.security:spring-security-jwt:1.0.3.RELEASE")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.security.oauth:spring-security-oauth2:2.0.8.RELEASE")
+    implementation("org.springframework.security:spring-security-jwt:1.0.3.RELEASE")
 
     /**
      * swagger
      */
-    compile("io.springfox:springfox-swagger2:2.2.2")
-    compile("io.springfox:springfox-swagger-ui:2.2.2")
-
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
-}
-
-task buildDocker(type: Docker, dependsOn: build) {
-    push = true
-    applicationName = jar.baseName
-    dockerfile = file('deploy/Dockerfile')
-    doFirst {
-        copy {
-            from jar
-            into stageDir
-        }
+    implementation("io.springfox:springfox-swagger2:2.2.2")
+    implementation("io.springfox:springfox-swagger-ui:2.2.2")
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
+test {
+    useJUnitPlatform()
+}
+
+//task buildDocker(type: Docker, dependsOn: build) {
+//    push = true
+//    applicationName = jar.baseName
+//    dockerfile = file('deploy/Dockerfile')
+//    doFirst {
+//        copy {
+//            from jar
+//            into stageDir
+//        }
+//    }
+//}
